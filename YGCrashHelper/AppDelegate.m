@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [YGCrashHelper yg_crashHandle];
+    [YGCrashHelper yg_setIgnoreMethodArray:@[@"dsdf"]];
+    [YGCrashHelper yg_setIgnoreClassArray:@[@"NSArray"]];
     return YES;
 }
 

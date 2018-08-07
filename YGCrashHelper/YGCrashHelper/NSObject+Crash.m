@@ -29,7 +29,7 @@ static NSMutableArray *kIgnoreMethodArrayM; // 需要忽略的的方法
                          withMethod:@selector(yg_forwardInvocation:)];
 }
 
-+ (void)setIgnoreClassArrayM:(NSArray <NSString *>*)ignoreClassArray {
++ (void)yg_setIgnoreClassArrayM:(NSArray <NSString *>*)ignoreClassArray {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         kIgnoreClassArrayM = [NSMutableArray array];
@@ -37,7 +37,7 @@ static NSMutableArray *kIgnoreMethodArrayM; // 需要忽略的的方法
     });
 }
 
-+ (void)setIgnoreMethodArrayM:(NSArray <NSString *>*)ignoreMethodArray {
++ (void)yg_setIgnoreMethodArrayM:(NSArray <NSString *>*)ignoreMethodArray {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         kIgnoreMethodArrayM = [NSMutableArray array];

@@ -45,8 +45,8 @@
     for(int i=0;i<methodCount;i++)
     {
         Method temp = methodList[i];
-        IMP imp = method_getImplementation(temp);
-        SEL name_f = method_getName(temp);
+//        IMP imp = method_getImplementation(temp);
+//        SEL name_f = method_getName(temp);
         const char* name_s =sel_getName(method_getName(temp));
         int arguments = method_getNumberOfArguments(temp);
         const char* encoding =method_getTypeEncoding(temp);

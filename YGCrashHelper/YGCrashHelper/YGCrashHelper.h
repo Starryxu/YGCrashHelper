@@ -11,7 +11,6 @@
 
 #import "NSObject+Method.h"
 
-#import "NSObject+Crash.h"
 #import "NSArray+Crash.h"
 #import "NSMutableArray+Crash.h"
 #import "NSDictionary+Crash.h"
@@ -31,6 +30,9 @@
  如果不需要全部替换,可单独调用各分类 + (void)yg_crashHandle 方法;
  */
 + (void)yg_crashHandle;
+
+// 包含以上及未实现方法闪退处理
++ (void)yg_crashHandleAll;
 
 /**
  处理忽略的类

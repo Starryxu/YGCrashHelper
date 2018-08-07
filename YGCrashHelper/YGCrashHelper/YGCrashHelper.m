@@ -7,10 +7,24 @@
 //
 
 #import "YGCrashHelper.h"
+#import "NSObject+Crash.h"
 
 @implementation YGCrashHelper
 
 + (void)yg_crashHandle {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [NSArray yg_crashHandle];
+        [NSMutableArray yg_crashHandle];
+        [NSDictionary yg_crashHandle];
+        [NSMutableDictionary yg_crashHandle];
+        [NSString yg_crashHandle];
+        [NSMutableString yg_crashHandle];
+        [NSMutableAttributedString yg_crashHandle];
+    });
+}
+
++ (void)yg_crashHandleAll {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [NSObject yg_crashHandle];
