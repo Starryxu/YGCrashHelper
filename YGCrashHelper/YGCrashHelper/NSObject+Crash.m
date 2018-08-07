@@ -9,6 +9,9 @@
 #import "NSObject+Crash.h"
 #import "YGCrashMethod.h"
 
+static NSMutableArray *kIgnoreClassArrayM; // 需要忽略的类
+static NSMutableArray *kIgnoreMethodArrayM; // 需要忽略的的方法
+
 @implementation NSObject (Crash)
 
 + (void)yg_crashHandle {
@@ -25,6 +28,24 @@
     [self yg_exchangeInstanceMethod:@selector(forwardInvocation:)
                          withMethod:@selector(yg_forwardInvocation:)];
 }
+
++ (void)setIgnoreClassArrayM:(NSArray <NSString *>*)ignoreClassArray {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kIgnoreClassArrayM = [NSMutableArray array];
+        [kIgnoreClassArrayM addObjectsFromArray:ignoreClassArray];
+    });
+}
+
++ (void)setIgnoreMethodArrayM:(NSArray <NSString *>*)ignoreMethodArray {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kIgnoreMethodArrayM = [NSMutableArray array];
+        [kIgnoreMethodArrayM addObjectsFromArray:ignoreMethodArray];
+    });
+}
+
+
 
 - (void)yg_setValue:(id)value forKey:(NSString *)key {
     @try {
@@ -75,6 +96,46 @@
 }
 
 - (NSMethodSignature *)yg_methodSignatureForSelector:(SEL)aSelector {
+    
+    NSString *sel = NSStringFromSelector(aSelector);
+    
+    BOOL ignoreFlag = NO;
+    
+    if ([sel hasSuffix:@"_"]) {
+        ignoreFlag = YES;
+    }
+    
+    if ([self respondsToSelector:aSelector]) {
+        ignoreFlag = YES;
+    }
+    
+    for (NSString *method in kIgnoreMethodArrayM) {
+        if ([sel isEqualToString:method]) {
+            ignoreFlag = YES;
+        }
+    }
+    
+    for (NSString *class in kIgnoreClassArrayM) {
+        if ([self isKindOfClass:NSClassFromString(class)]) {
+            ignoreFlag = YES;
+        }
+    }
+    
+    if (!ignoreFlag) {
+        for (NSString *class in kIgnoreClassArrayM) {
+            NSArray *methodArray = [NSClassFromString(class) yg_getAllMethods];
+            for (NSString *method in methodArray) {
+                if ([method isEqualToString:sel] || [method containsString:sel]) {
+                    ignoreFlag = YES;
+                }
+            }
+        }
+    }
+    
+    if (ignoreFlag) {
+        return [self yg_methodSignatureForSelector:aSelector];
+    }
+    
     NSMethodSignature *methodSignature = [self yg_methodSignatureForSelector:aSelector];
     if (!methodSignature) {
         methodSignature = [YGCrashMethod instanceMethodSignatureForSelector:@selector(yg_crashMethed)];

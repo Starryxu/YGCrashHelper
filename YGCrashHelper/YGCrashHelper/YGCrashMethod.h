@@ -26,4 +26,8 @@ static NSString * const YGCrashNotificationName = @"YGCrashNotificationName";
 + (void)yg_errorHandleWithException:(NSException *)exception;
 
 
+
+
+
+
 @end

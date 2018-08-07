@@ -9,6 +9,24 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 @interface NSObject (Method)
+
+/**
+ 获取对象的所有方法
+ */
++(NSArray *)yg_getAllMethods;
+
+
+/**
+ 获取对象的所有属性
+ */
++(NSArray *)yg_getAllProperties;
+
+
+/**
+ 获取对象的所有属性和属性内容
+ */
++ (NSDictionary *)yg_getAllPropertiesAndVaules:(NSObject *)obj;
+
 /**
  类方法交换
  

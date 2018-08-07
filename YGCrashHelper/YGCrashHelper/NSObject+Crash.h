@@ -10,5 +10,19 @@
 #import "YGCrashProtocol.h"
 
 @interface NSObject (Crash) <YGCrashProtocol>
+
+/**
+ 防止闪退
+ */
 + (void)yg_crashHandle;
+
+/**
+ 要忽略的类
+ */
++ (void)yg_setIgnoreClassArrayM:(NSArray <NSString *>*)ignoreClassArray;
+
+/**
+ 要忽略的方法
+ */
++ (void)yg_setIgnoreMethodArrayM:(NSArray <NSString *>*)ignoreMethodArray;
 @end

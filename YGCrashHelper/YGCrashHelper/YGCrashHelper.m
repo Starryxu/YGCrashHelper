@@ -24,5 +24,12 @@
     });
 }
 
++ (void)yg_setIgnoreClassArray:(NSArray<NSString *> *)array {
+    [NSObject yg_setIgnoreClassArrayM:array];
+}
+
++ (void)yg_setIgnoreMethodArray:(NSArray<NSString *> *)array {
+    [NSObject yg_setIgnoreMethodArrayM:array];
+}
 
 @end

@@ -32,5 +32,20 @@
  */
 + (void)yg_crashHandle;
 
+/**
+ 处理忽略的类
+ 
+ @param array 忽略的类字符串数组
+ */
++ (void)yg_setIgnoreClassArray:(NSArray <NSString *>*)array;
+
+
+/**
+ 处理忽略的方法
+ 
+ @param array 忽略的方法字符创数组
+ */
++ (void)yg_setIgnoreMethodArray:(NSArray <NSString *>*)array;
+
 
 @end
