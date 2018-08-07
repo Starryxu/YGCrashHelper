@@ -26,17 +26,22 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifaction:) name:YGCrashNotificationName object:nil];
     
-    [self test1];
+    NSArray *arr = @[@"d"];
+    NSLog(@"%@",arr[10]);
+    
+//    [self test1];
     [self test2];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self performSelector:@selector(sdfsdfsdfsdfsdf)];
+//    [self performSelector:@selector(sdfsdfsdfsdfsdf)];
+    NSArray *arr = @[@"d"];
+    NSLog(@"%@",arr[10]);
 }
 
 - (void)test1 {
-    NSArray *arr = @[];
-    NSLog(@"%@",arr[2]);
+    NSArray *arr = @[@"d"];
+    NSLog(@"%@",arr[10]);
 }
 
 - (void)test2 {
@@ -51,7 +56,7 @@
 
 #pragma mark notifaction
 - (void)notifaction:(NSNotification *)notifation {
-    NSLog(@"%@",notifation.userInfo);
+//    NSLog(@"%@",notifation.userInfo);
 }
 
 @end
