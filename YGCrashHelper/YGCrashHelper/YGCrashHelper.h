@@ -31,6 +31,7 @@
  */
 + (void)yg_crashHandle;
 
+
 // 包含以上及未实现方法闪退处理
 + (void)yg_crashHandleAll;
 

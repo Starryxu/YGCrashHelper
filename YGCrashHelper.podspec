@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "YGCrashHelper"
-s.version      = "1.0.2"
+s.version      = "1.0.3"
 s.summary      = "处理程序未识别方法及容器类方法操作造成的崩溃问题"
 s.homepage     = "https://github.com/Starryxu/YGCrashHelper.git"
 s.license      = { :type => "MIT", :file => "LICENSE" }

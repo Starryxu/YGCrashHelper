@@ -36,7 +36,7 @@
                                    @"ErrorName":errorName,
                                    @"ErrorReason":errorReason,
                                    @"ErrorPlace":errorPlace,
-                                   @"Exception":exception,
+//                                   @"Exception":exception,
                                    @"CallStackSymbols":callStackSymbolsArr
                                    };
     
