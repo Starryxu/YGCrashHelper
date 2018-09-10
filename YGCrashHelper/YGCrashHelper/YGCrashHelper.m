@@ -11,7 +11,16 @@
 
 @implementation YGCrashHelper
 
-+ (void)yg_crashHandle {
++ (instancetype)sharedInstance {
+    static YGCrashHelper *crashHelper;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        crashHelper = [[super alloc] init];
+    });
+    return crashHelper;
+}
+
+- (void)carshHandle {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [NSArray yg_crashHandle];
@@ -24,7 +33,7 @@
     });
 }
 
-+ (void)yg_crashHandleAll {
+- (void)crashHandleAll {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [NSObject yg_crashHandle];
@@ -38,12 +47,17 @@
     });
 }
 
-+ (void)yg_setIgnoreClassArray:(NSArray<NSString *> *)array {
-    [NSObject yg_setIgnoreClassArrayM:array];
+- (void)carshHandleAll:(YGCrashHandle)handleBlock {
+    [self crashHandleAll];
+    self.handleBlock = handleBlock;
 }
 
-+ (void)yg_setIgnoreMethodArray:(NSArray<NSString *> *)array {
-    [NSObject yg_setIgnoreMethodArrayM:array];
+- (void)ignoreClass:(NSArray<NSString *> *)classArray {
+    [NSObject yg_setIgnoreClassArrayM:classArray];
+}
+
+- (void)ignoreMethod:(NSArray<NSString *> *)methodArray {
+    [NSObject yg_setIgnoreMethodArrayM:methodArray];
 }
 
 @end

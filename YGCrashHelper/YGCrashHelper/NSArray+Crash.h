@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "YGCrashProtocol.h"
 @interface NSArray (Crash) <YGCrashProtocol>
+
 + (void)yg_crashHandle;
 
 @end

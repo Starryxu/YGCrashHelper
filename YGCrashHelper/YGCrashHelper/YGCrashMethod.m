@@ -7,6 +7,7 @@
 //
 
 #import "YGCrashMethod.h"
+#import "YGCrashHelper.h"
 
 @implementation YGCrashMethod
 
@@ -43,6 +44,9 @@
     //将错误信息放在字典里，用通知的形式发送出去
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:YGCrashNotificationName object:nil userInfo:errorInfoDic];
+        if ([YGCrashHelper sharedInstance].handleBlock) {
+            [YGCrashHelper sharedInstance].handleBlock(errorName, errorReason, errorPlace, callStackSymbolsArr, exception);
+        }
     });
 }
 
