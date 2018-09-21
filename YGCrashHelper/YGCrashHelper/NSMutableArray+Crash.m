@@ -20,6 +20,10 @@
                                                 withMethod:@selector(yg_insertObject:atIndex:)];
     [objc_getClass("__NSArrayM") yg_exchangeInstanceMethod:@selector(objectAtIndex:)
                                                 withMethod:@selector(yg_objectAtIndex:)];
+    [objc_getClass("__NSArrayM") yg_exchangeInstanceMethod:@selector(objectAtIndexedSubscript:)
+                                                withMethod:@selector(yg_objectAtIndexedSubscript:)];
+    [objc_getClass("__NSArrayM") yg_exchangeInstanceMethod:@selector(subarrayWithRange:)
+                                                withMethod:@selector(yg_subarrayWithRange:)];
 }
 
 - (void)yg_removeObject:(id)anObject {
@@ -74,6 +78,32 @@
     id obj = nil;
     @try {
         obj = [self yg_objectAtIndex:index];
+    }
+    @catch (NSException *exception) {
+        [YGCrashMethod yg_errorHandleWithException:exception];
+    }
+    @finally {
+        return obj;
+    }
+}
+
+- (id)yg_objectAtIndexedSubscript:(NSUInteger)index {
+    id obj = nil;
+    @try {
+        obj = [self yg_objectAtIndexedSubscript:index];
+    }
+    @catch (NSException *exception) {
+        [YGCrashMethod yg_errorHandleWithException:exception];
+    }
+    @finally {
+        return obj;
+    }
+}
+
+- (NSArray *)yg_subarrayWithRange:(NSRange)range {
+    id obj = nil;
+    @try {
+        obj = [self yg_subarrayWithRange:range];
     }
     @catch (NSException *exception) {
         [YGCrashMethod yg_errorHandleWithException:exception];

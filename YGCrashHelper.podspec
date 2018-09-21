@@ -1,8 +1,11 @@
 Pod::Spec.new do |s|
 
 s.name         = "YGCrashHelper"
-s.version      = "1.1.0"
-s.summary      = "处理程序未识别方法及容器类方法操作造成的崩溃问题"
+s.version      = "1.1.1"
+s.summary      = "异常操作处理"
+s.description  = <<-DESC
+                    本次更新新增NSMutableArray几个方法的异常d拦截处理.
+                    DESC
 s.homepage     = "https://github.com/Starryxu/YGCrashHelper.git"
 s.license      = { :type => "MIT", :file => "LICENSE" }
 s.author       = { "xuyaguang" => "xu_yaguang@163.com" }

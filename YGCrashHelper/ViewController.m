@@ -34,9 +34,11 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    [self performSelector:@selector(sdfsdfsdfsdfsdf)];
-    NSArray *arr = @[@"d"];
-    NSLog(@"%@",arr[10]);
+    NSMutableArray *arrM = [NSMutableArray array];
+    [arrM addObject:@"sfsd"];
+    [arrM insertObject:@"dfhsdj" atIndex:3];
+    NSLog(@"%@",[arrM objectAtIndexedSubscript:4]);
+    NSLog(@"%@",[arrM subarrayWithRange:NSMakeRange(5, 10)]);
 }
 
 - (void)test1 {
