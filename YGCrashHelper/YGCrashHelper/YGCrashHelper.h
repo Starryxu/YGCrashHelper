@@ -30,8 +30,12 @@ typedef void(^YGCrashHandle)(NSString *errorName, NSString *errorReason, NSStrin
 + (instancetype)sharedInstance;
 - (void)carshHandle;
 - (void)crashHandleAll;
+- (void)crashHandle:(YGCrashHandle)handleBlock;
 - (void)carshHandleAll:(YGCrashHandle)handleBlock;
 // 也可以监听通知 YGCrashNotificationName 获取崩溃信息,以便于上传到自己的服务器
+
+
+
 - (void)ignoreClass:(NSArray <NSString *>*)classArray;
 - (void)ignoreMethod:(NSArray <NSString *>*)methodArray;
 

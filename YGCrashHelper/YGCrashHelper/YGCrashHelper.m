@@ -47,6 +47,11 @@
     });
 }
 
+- (void)crashHandle:(YGCrashHandle)handleBlock {
+    [self carshHandle];
+    self.handleBlock = handleBlock;
+}
+
 - (void)carshHandleAll:(YGCrashHandle)handleBlock {
     [self crashHandleAll];
     self.handleBlock = handleBlock;
